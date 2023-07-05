@@ -1,22 +1,26 @@
+/* 
+    odd length subarray->(total subarray+1)/2
+    
+    even length subarray->(total subarray)/2
+    
+    total subarray for a particular element->left side subarray*right side subarray
+    
+    total subarray=(i+1)*(n-i)
+    
+    
+
+*/
 class Solution {
     public int sumOddLengthSubarrays(int[] arr) {
-        int s=0;
-        
-        for(int i=0;i<arr.length;i++){
-            for(int j=i;j<arr.length;j++){
-                if((j-i+1)%2!=0)
-                    s+=calc(arr,i,j);
-            }
+        int sum=0;
+        int n=arr.length;
+            
+        for(int i=0;i<n;i++){
+            
+            int t=(i+1)*(n-i); //total subarray
+            
+            sum+= ((t+1)/2)*arr[i]; //for each element
         }
-        return s;
-    }
-    
-    private int calc(int arr[],int i,int j){
-        int s=0;
-        
-        for(int t=i;t<=j;t++)
-            s+=arr[t];
-        
-        return s;
+        return sum;
     }
 }
